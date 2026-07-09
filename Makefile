@@ -1,4 +1,4 @@
-.PHONY: up down logs api frontend db
+.PHONY: up down logs api frontend db test
 
 up:
 	docker compose up --build
@@ -17,3 +17,6 @@ frontend:
 
 db:
 	docker compose up db -d
+
+test:
+	cd backend && pip install -q -r requirements-dev.txt && pytest

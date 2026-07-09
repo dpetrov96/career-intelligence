@@ -7,8 +7,12 @@ from fastapi.responses import RedirectResponse
 from app.api.router import router as api_router
 from app.core.config import settings
 from app.core.database import SessionLocal, init_db
+from app.core.logging_config import configure_logging
+from app.core.request_logging import RequestLoggingMiddleware
 from app.services.job_service import seed_mock_jobs
 from app.services.storage import ensure_upload_dir
+
+configure_logging()
 
 OPENAPI_TAGS = [
     {
@@ -61,6 +65,7 @@ app = FastAPI(
     openapi_tags=OPENAPI_TAGS,
 )
 
+app.add_middleware(RequestLoggingMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,

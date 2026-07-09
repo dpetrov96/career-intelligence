@@ -1,3 +1,5 @@
+import logging
+
 from openai import OpenAI
 from sqlalchemy.orm import Session
 
@@ -21,6 +23,8 @@ Focus on:
 - comparisons when multiple jobs are in context
 
 Be concise, structured, and actionable. Use bullet points when helpful."""
+
+logger = logging.getLogger("app.chat")
 
 
 def chat(db: Session, payload: ChatRequest) -> ChatResponse:
@@ -46,6 +50,15 @@ def chat(db: Session, payload: ChatRequest) -> ChatResponse:
     )
 
     reply, grounded, sources = build_reply(db, payload.message, resume, job)
+
+    logger.info(
+        "chat session=%s job=%s grounded=%s sources=%s message_len=%s",
+        payload.session_id,
+        payload.job_id,
+        grounded,
+        len(sources),
+        len(payload.message),
+    )
 
     db.add(
         ChatMessage(

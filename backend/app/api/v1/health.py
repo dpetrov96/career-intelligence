@@ -10,9 +10,16 @@ router = APIRouter(tags=["health"])
 
 @router.get("/health")
 def api_health(db: Session = Depends(get_db)) -> dict:
-    db.execute(text("SELECT 1"))
+    try:
+        db.execute(text("SELECT 1"))
+        database = "ok"
+    except Exception:
+        database = "error"
+
+    status = "ok" if database == "ok" else "degraded"
     return {
-        "status": "ok",
+        "status": status,
         "service": "career-intelligence-api",
+        "database": database,
         "llm_configured": settings.llm_configured,
     }
