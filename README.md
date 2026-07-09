@@ -2,6 +2,20 @@
 
 AI assistant that analyzes resumes against job descriptions — skill gaps, experience alignment, and interview preparation.
 
+<img width="1470" height="835" alt="image" src="https://github.com/user-attachments/assets/059fc617-2e17-48cf-a62e-12193e6b6018" />
+￼
+<img width="1470" height="833" alt="image" src="https://github.com/user-attachments/assets/4eff3b99-a0f4-4f47-980b-e6653c87c535" />
+
+<img width="1470" height="834" alt="image" src="https://github.com/user-attachments/assets/cbe57b44-0b02-44e6-96d0-a7c037089b22" />
+
+<img width="1470" height="835" alt="image" src="https://github.com/user-attachments/assets/20bb4fd3-586f-42d1-9e21-3f57970e6932" />
+
+<img width="1470" height="837" alt="image" src="https://github.com/user-attachments/assets/c60ee996-6640-46e9-8bda-705be04c0ed6" />
+￼
+<img width="1470" height="834" alt="image" src="https://github.com/user-attachments/assets/654f38d9-561b-413d-892f-fa2fe468a82f" />
+
+
+
 ## Project structure
 
 ```
