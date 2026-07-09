@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 interface CompanyLogoProps {
   company: string;
   domain: string;
+  logoUrl?: string | null;
   size?: "sm" | "md" | "lg";
   className?: string;
 }
@@ -26,14 +27,16 @@ const PX_MAP = {
 export function CompanyLogo({
   company,
   domain,
+  logoUrl,
   size = "md",
   className,
 }: CompanyLogoProps) {
   const [hasError, setHasError] = useState(false);
   const dimension = SIZE_MAP[size];
   const px = PX_MAP[size];
+  const src = logoUrl || (domain ? `https://logo.clearbit.com/${domain}` : null);
 
-  if (hasError) {
+  if (!src || hasError) {
     return (
       <div
         className={cn(
@@ -50,7 +53,7 @@ export function CompanyLogo({
 
   return (
     <img
-      src={`https://logo.clearbit.com/${domain}`}
+      src={src}
       alt={`${company} logo`}
       width={px}
       height={px}

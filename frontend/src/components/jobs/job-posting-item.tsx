@@ -1,6 +1,7 @@
 "use client";
 
 import { CompanyLogo } from "@/components/jobs/company-logo";
+import { Badge } from "@/components/ui/badge";
 import type { JobPosting } from "@/lib/jobs";
 import { cn } from "@/lib/utils";
 
@@ -21,30 +22,43 @@ export function JobPostingItem({
         type="button"
         onClick={() => onSelect(job.id)}
         aria-current={isSelected ? "true" : undefined}
-        className={cn(
-          "flex w-full gap-3 border-l-[3px] px-4 py-3.5 text-left transition-colors duration-100 active:bg-brand-light/60 sm:px-5 sm:py-4",
-          isSelected
-            ? "border-l-primary bg-accent"
-            : "border-l-transparent",
-        )}
+        data-selected={isSelected}
+        className="job-card flex w-full gap-3 px-3.5 py-3 text-left sm:px-4 sm:py-3.5"
       >
         <CompanyLogo
           company={job.company}
           domain={job.domain}
+          logoUrl={job.logo_url}
           size="md"
           className="max-sm:size-10"
         />
 
         <span className="min-w-0 flex-1">
-          <span
-            className={cn(
-              "block text-[14px] leading-[1.35]",
-              isSelected
-                ? "font-semibold text-primary"
-                : "font-normal text-foreground",
+          <span className="flex items-start gap-2">
+            <span
+              className={cn(
+                "block min-w-0 flex-1 text-[14px] leading-[1.35]",
+                isSelected
+                  ? "font-semibold text-primary"
+                  : "font-medium text-foreground",
+              )}
+            >
+              {job.title}
+            </span>
+            {job.match_score != null && (
+              <Badge
+                variant="secondary"
+                className={cn(
+                  "shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold tabular-nums",
+                  job.match_score >= 70 && "bg-emerald-500/15 text-emerald-700",
+                  job.match_score >= 50 &&
+                    job.match_score < 70 &&
+                    "bg-amber-500/15 text-amber-700",
+                )}
+              >
+                {Math.round(job.match_score)}%
+              </Badge>
             )}
-          >
-            {job.title}
           </span>
 
           <span

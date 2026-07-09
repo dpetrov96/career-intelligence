@@ -3,13 +3,32 @@
 import { useEffect } from "react";
 
 import { ContextPanelContent } from "@/components/jobs/context-panel-content";
+import type { ResumeSearchSuggestion } from "@/lib/api/documents";
+import type { LinkedInSyncStatus } from "@/lib/api/types";
+import type { JobPosting } from "@/lib/jobs";
+import type { LinkedInSyncParams } from "@/lib/linkedin-sync";
 import { cn } from "@/lib/utils";
 
 interface MobileContextDrawerProps {
   open: boolean;
   onClose: () => void;
+  jobs: JobPosting[];
+  isLoading: boolean;
+  error: string | null;
+  onReload: () => void;
   selectedJobId: number | null;
   onSelectJob: (id: number) => void;
+  syncStatus: LinkedInSyncStatus;
+  isLinkedInRunning: boolean;
+  isMatching?: boolean;
+  onFindMatches: (suggestion: ResumeSearchSuggestion) => void;
+  onStartLinkedIn: (params: LinkedInSyncParams) => void;
+  onStopLinkedIn: () => void;
+  hasResume: boolean;
+  resumeFileName: string | null;
+  sessionId: number | null;
+  autoFindMatches?: boolean;
+  highlightImport?: boolean;
 }
 
 export function MobileContextDrawer({
@@ -17,6 +36,21 @@ export function MobileContextDrawer({
   onClose,
   selectedJobId,
   onSelectJob,
+  jobs,
+  isLoading,
+  error,
+  onReload,
+  syncStatus,
+  isLinkedInRunning,
+  isMatching = false,
+  onFindMatches,
+  onStartLinkedIn,
+  onStopLinkedIn,
+  hasResume,
+  resumeFileName,
+  sessionId,
+  autoFindMatches,
+  highlightImport,
 }: MobileContextDrawerProps) {
   useEffect(() => {
     if (!open) return;
@@ -47,7 +81,7 @@ export function MobileContextDrawer({
         aria-label="Close positions panel"
         onClick={onClose}
         className={cn(
-          "fixed inset-0 z-40 bg-stone-900/30 transition-opacity duration-300 lg:hidden",
+          "fixed inset-0 z-40 bg-slate-900/25 backdrop-blur-[2px] transition-opacity duration-300 lg:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       />
@@ -55,18 +89,33 @@ export function MobileContextDrawer({
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Positions"
+        aria-label="Recommended matches"
         aria-hidden={!open}
         className={cn(
-          "fixed inset-y-0 right-0 z-50 flex w-full max-w-none flex-col bg-surface shadow-[-8px_0_32px_-12px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out sm:max-w-sm lg:hidden",
+          "fixed inset-y-0 right-0 z-50 flex w-full max-w-none flex-col panel-shell shadow-[-8px_0_32px_-12px_rgba(15,23,42,0.12)] transition-transform duration-300 ease-out sm:max-w-sm lg:hidden",
           open ? "translate-x-0" : "pointer-events-none translate-x-full",
         )}
       >
         <ContextPanelContent
+          jobs={jobs}
+          isLoading={isLoading}
+          error={error}
+          onReload={onReload}
           selectedJobId={selectedJobId}
           onSelectJob={onSelectJob}
           onJobSelected={onClose}
           onClose={onClose}
+          syncStatus={syncStatus}
+          isLinkedInRunning={isLinkedInRunning}
+          isMatching={isMatching}
+          onFindMatches={onFindMatches}
+          onStartLinkedIn={onStartLinkedIn}
+          onStopLinkedIn={onStopLinkedIn}
+          hasResume={hasResume}
+          resumeFileName={resumeFileName}
+          sessionId={sessionId}
+          autoFindMatches={autoFindMatches}
+          highlightImport={highlightImport}
         />
       </aside>
     </>

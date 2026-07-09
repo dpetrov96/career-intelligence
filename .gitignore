@@ -32,3 +32,7 @@ npm-debug.log*
 .mypy_cache/
 .ruff_cache/
 coverage/
+
+# Uploads (local dev)
+data/uploads/
+backend/data/uploads/

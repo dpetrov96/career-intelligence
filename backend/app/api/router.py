@@ -1,8 +1,11 @@
 from fastapi import APIRouter
 
+from app.api.v1 import chat, documents, health, jobs, sessions
+
 router = APIRouter()
 
-
-@router.get("/health")
-async def api_health() -> dict[str, str]:
-    return {"status": "ok", "service": "career-intelligence-api"}
+router.include_router(health.router)
+router.include_router(documents.router)
+router.include_router(jobs.router)
+router.include_router(sessions.router)
+router.include_router(chat.router)
