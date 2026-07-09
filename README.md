@@ -1,4 +1,4 @@
-# Career Intelligence (Option 4)
+# Career Intelligence
 
 RAG assistant: upload a CV, compare it to job postings, ask about fit, skill gaps, and interview prep.
 
