@@ -122,7 +122,6 @@ def sync_jobs_from_linkedin_legacy(
     payload: LinkedInSyncRequest | None = None,
     db: Session = Depends(get_db),
 ) -> LinkedInSyncResponse:
-    """Legacy blocking sync — prefer /sync/linkedin/start + status polling."""
     from app.integrations.linkedin.sync import sync_linkedin_jobs
 
     options = payload or LinkedInSyncRequest()

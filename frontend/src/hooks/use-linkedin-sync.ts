@@ -61,7 +61,6 @@ export function useLinkedInSync(onJobsUpdated?: () => void | Promise<void>) {
       try {
         await onJobsUpdatedRef.current?.();
       } catch {
-        /* reload is best-effort */
       }
 
       matchingTimerRef.current = setTimeout(() => {

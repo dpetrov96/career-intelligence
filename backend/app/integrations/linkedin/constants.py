@@ -29,7 +29,6 @@ LINKEDIN_GEO = {
     "Greece": "106006489",
 }
 
-# Default 10, max 100 (10 pages × 10)
 DEFAULT_SYNC_LIMIT = 10
 MAX_SYNC_LIMIT = 100
 SEARCH_PAGE_SIZE = 10

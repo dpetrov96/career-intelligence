@@ -94,7 +94,6 @@ export function useChat(
             setMessages(welcome.messages.map((message) => parseStoredChatMessage(message)));
           }
         } catch {
-          /* welcome is optional */
         } finally {
           if (!cancelled) setIsTypingWelcome(false);
         }
@@ -122,7 +121,6 @@ export function useChat(
       setInput("");
       setIsSending(true);
 
-      // Brief pause so the typing indicator is visible before the reply arrives.
       await new Promise((resolve) => setTimeout(resolve, 450));
 
       try {

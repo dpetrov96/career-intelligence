@@ -54,7 +54,6 @@ export function JobsPanelEmptyState({
           setKeywordSuggestions(keywords);
         }
       } catch {
-        /* keep defaults */
       }
     })();
 

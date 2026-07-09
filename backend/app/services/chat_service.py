@@ -9,7 +9,7 @@ from app.services.retrieval_service import format_context, retrieve_context
 from app.services.session_service import get_session, get_session_document
 
 
-SYSTEM_PROMPT = """You are a career intelligence assistant for Option 4 of a take-home assignment.
+SYSTEM_PROMPT = """You are a career intelligence assistant.
 
 You analyze a candidate resume against job postings. Use ONLY the provided context.
 If the answer is not in the context, say what is missing and suggest next steps.

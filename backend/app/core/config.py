@@ -29,7 +29,6 @@ class Settings(BaseSettings):
     chunk_overlap: int = 150
     rag_top_k: int = 8
 
-    # Sensible defaults — not exposed in .env for this assignment
     app_name: str = "Career Intelligence API"
     debug: bool = True
     api_prefix: str = "/api/v1"
