@@ -132,7 +132,12 @@ Still out of scope: CI pipeline, OpenTelemetry traces, LLM token metrics dashboa
 - Job description file upload in UI
 - Streaming chat, RAG eval set
 
-## Screenshots
+## Demo
+
+
+
+https://github.com/user-attachments/assets/00b4312c-006f-4f00-b69c-760e86ad3904
+
 
 <img width="1470" height="835" alt="CV upload" src="https://github.com/user-attachments/assets/059fc617-2e17-48cf-a62e-12193e6b6018" />
 
