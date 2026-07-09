@@ -1,20 +1,24 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
+};
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: "Career Intelligence",
-  description: "Career Intelligence",
+  description:
+    "Analyze your resume against job descriptions — skill gaps, fit, and interview prep.",
 };
 
 export default function RootLayout({
@@ -25,9 +29,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${montserrat.variable} light h-full antialiased`}
+      style={{ colorScheme: "light" }}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="h-dvh overflow-hidden bg-background font-sans text-foreground">
+        {children}
+      </body>
     </html>
   );
 }
